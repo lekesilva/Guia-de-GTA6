@@ -86,11 +86,6 @@ footer{background:#132126;color:#cfe3e2;font-size:14px}
 footer a{color:var(--sun)}
 footer ul{columns:2 260px;padding-left:18px}
 .note{font-size:13px;color:var(--soft);margin-top:14px}
-.art{margin:0;background:var(--card);border-radius:16px;overflow:hidden}
-.art img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;background:var(--line)}
-.art figcaption{padding:12px 16px}.art figcaption b{display:block;font-size:17px}.art figcaption span{color:var(--soft);font-size:14px}
-.art.top{margin-bottom:18px}.art.top img{aspect-ratio:auto;max-height:72vh;object-fit:contain;background:var(--card)}.art.top figcaption b{font-size:22px}
-
 /* Publicações: notícias, vídeos e carrosséis com crédito */
 .feed{display:grid;gap:18px;max-width:850px}
 .post{background:var(--card);border-radius:16px;overflow:hidden}
@@ -505,7 +500,7 @@ let done={};try{done=JSON.parse(localStorage.getItem('gta6guia')||'{}')}catch(e)
 const save=()=>{try{localStorage.setItem('gta6guia',JSON.stringify(done))}catch(e){}};
 let q='',only='';
 const yt='<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="#ff5a5f"/><path d="M10 9l5 3-5 3z" fill="#fff"/></svg>';
-const views=[['publicacoes','Novidades'],...ch.map(c=>[c.id,c.t]),['achados','Armas, carros e grana'],['bugs','Bugs de dinheiro'],['icones','Ícones do HUD'],['dicas','Dicas e controles'],['colecionaveis','Colecionáveis'],['extras','Strangers & dicas'],['galeria','Galeria']];
+const views=[['publicacoes','Novidades'],...ch.map(c=>[c.id,c.t]),['achados','Armas, carros e grana'],['bugs','Bugs de dinheiro'],['icones','Ícones do HUD'],['dicas','Dicas e controles'],['colecionaveis','Colecionáveis'],['extras','Strangers & dicas']];
 
 // Publicações: adicione no início, com fonte, link, data e imagens autorizadas na ordem do carrossel.
 const publicacoes=[
@@ -528,10 +523,6 @@ const publicacoes=[
     "video": "https://www.youtube.com/watch?v=rz1B4B2yBZY",
     "imagens": []
   }
-];
-// Galeria: artes originais de fã. Adicione a mais nova no TOPO: {f:'img/arte-AAAA-MM-DD.jpg',t:'Título',d:'DD/MM/AAAA'}
-const artes=[
-{f:'img/arte-2026-11-24.jpg',t:'Fim de tarde em Leonida',d:'24/11/2026'},
 ];
 const tabs=document.getElementById('tabs'),view=document.getElementById('view');
 tabs.innerHTML=views.map(v=>`<a href="#${v[0]}">${v[1]}</a>`).join('');
@@ -598,12 +589,6 @@ function extras(){
  <div class="head" style="margin-top:40px"><div><h2>Dicas gerais</h2></div></div>
  <div class="grid">${tips.map(s=>`<div class="box"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('')}</div>`;
 }
-function gallery(){
- const fig=(a,top)=>`<figure class="art${top?' top':''}"><img src="${a.f}" alt="${a.t}" loading="${top?'eager':'lazy'}"${top?'':' width="800" height="500"'}><figcaption><b>${a.t}</b><span>${top?'Arte do dia · ':''}${a.d}</span></figcaption></figure>`;
- return `<div class="head"><div><h2>Galeria</h2><p>Artes originais de fã inspiradas em Leonida, uma nova por dia. Não são imagens oficiais do jogo.</p></div></div>
- ${artes.length?fig(artes[0],1)+(artes.length>1?`<div class="grid">${artes.slice(1).map(a=>fig(a)).join('')}</div>`:''):'<div class="box empty">A primeira arte chega em breve.</div>'}`;
-}
-
 function publicacoesView(){
  const urlSegura=s=>{if(!s)return '';try{const u=new URL(s,location.href);return ['http:','https:'].includes(u.protocol)?u.href:''}catch(e){return ''}};
  const links=(href,label)=>{const url=urlSegura(href||'');return url?'<a class="vid" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+'</a>':''};
@@ -618,7 +603,7 @@ function render(){
  const id=(location.hash||'#cap1').slice(1),c=ch.find(x=>x.id===id);
  const cur=c?id:(views.some(v=>v[0]===id)?id:'cap1');
  tabs.querySelectorAll('a').forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+cur));
- view.innerHTML=c?chapter(c):cur==='publicacoes'?publicacoesView():cur==='achados'?finds():cur==='bugs'?glitches():cur==='icones'?icons():cur==='dicas'?tips2():cur==='colecionaveis'?collect():cur==='extras'?extras():cur==='galeria'?gallery():chapter(ch[0]);
+ view.innerHTML=c?chapter(c):cur==='publicacoes'?publicacoesView():cur==='achados'?finds():cur==='bugs'?glitches():cur==='icones'?icons():cur==='dicas'?tips2():cur==='colecionaveis'?collect():cur==='extras'?extras():chapter(ch[0]);
 }
 view.addEventListener('change',e=>{if(e.target.id==='cap'){upTo=+e.target.value;render();return}const k=e.target.dataset.k;if(!k)return;if(e.target.checked)done[k]=1;else delete done[k];save();render()});
 view.addEventListener('click',e=>{const slide=e.target.closest('button[data-slide]');if(slide){const track=slide.closest('.post-media').querySelector('.post-slides');track.scrollBy({left:(slide.dataset.slide==='next'?1:-1)*track.clientWidth,behavior:'smooth'});return}const c=e.target.closest('button[data-c]');if(c){cat=c.dataset.c;render();return}const b=e.target.closest('button[data-f]');if(!b)return;only=b.dataset.f;render()});
