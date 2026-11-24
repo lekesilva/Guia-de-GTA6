@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Guia Leonida GTA 6</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: guia de campo de fã, direto, prático, sem spoiler pesado
+   IDEA: o caderno de missões de um jogador pendurado no painel do carro em Leonida
+   PICTURE: pôr do sol sobre o mar das Keys com palmeiras e um barco, em camadas
+   COLOUR and TYPE: coral #ff5a5f dominante, teal #0f6e74 de apoio, amarelo #ffd23f de acento; Anton + Rubik
+   LAYOUT: faixa hero com cena, abas por capítulo, checklist com progresso, colecionáveis em tabela */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#0b2a30);--ink:light-dark(#132126,#eef6f5);--soft:light-dark(#55666b,#a9c3c2);--card:light-dark(#f2f8f8,#11373e);--line:light-dark(#d7e6e6,#1f4c54);--coral:#ff5a5f;--teal:light-dark(#0f6e74,#3fb6b9);--sun:#ffd23f}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Rubik,system-ui,sans-serif;overflow-x:clip}
+a{color:var(--teal)}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+pre,.scroll{overflow-x:auto}.scroll a{flex:none}html{scroll-padding-top:72px}
+h1,h2{font-family:Anton,Impact,sans-serif;font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+h1{font-size:clamp(40px,7vw,64px);color:#fff}
+h2{font-size:clamp(30px,4vw,44px)}
+.hero{background:var(--coral);color:#fff;padding:0;position:relative}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:end;gap:24px;padding:clamp(24px,4vw,48px) max(5vw,16px) 0}
+.hero p{font-size:17px;max-width:46ch;margin:14px 0 18px}
+.tag{display:inline-block;background:#132126;color:var(--sun);font-weight:700;font-size:13px;padding:4px 10px;border-radius:99px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.stats div{background:rgba(0,0,0,.18);border-radius:12px;padding:8px 14px}
+.stats b{display:block;font-family:Anton,sans-serif;font-size:26px;font-weight:400;line-height:1.1}
+.stats span{font-size:13px}
+.scene{width:100%;height:auto;display:block}
+nav{position:sticky;top:0;z-index:5;background:var(--teal);}
+nav .scroll{display:flex;gap:4px;max-width:1240px;margin:0 auto;padding:8px max(5vw,16px)}
+nav a{color:#fff;text-decoration:none;font-weight:500;padding:10px 14px;border-radius:10px;min-height:44px;display:flex;align-items:center;white-space:nowrap}
+nav a[aria-current]{background:var(--sun);color:#132126}
+nav a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.head{display:flex;flex-wrap:wrap;gap:16px;align-items:end;justify-content:space-between;margin-bottom:18px}
+.head p{margin:6px 0 0;color:var(--soft);max-width:62ch}
+.meter{flex:1 1 260px;max-width:380px}
+.meter .bar{height:14px;background:var(--line);border-radius:99px;overflow:hidden}
+.meter .bar i{display:block;height:100%;background:var(--coral);width:0;transition:width .4s}
+.meter small{display:block;margin-top:4px;color:var(--soft)}
+.tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.bug ol{margin:12px 0 0;padding-left:22px;color:var(--ink);font-size:15px;display:grid;gap:6px}
+.bugwarn{margin-top:12px!important;border-left:4px solid var(--coral);padding-left:10px}
+.sel{display:flex;align-items:center;gap:8px;font-weight:500}
+select{font:16px Rubik,sans-serif;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:44px}
+select:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+input[type=search]{font:16px Rubik,sans-serif;padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);flex:1 1 240px;min-height:44px}
+button{font:500 15px Rubik,sans-serif;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 14px;min-height:44px;cursor:pointer}
+button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.alert{background:var(--sun);color:#132126;border-radius:14px;padding:14px 18px;margin-bottom:18px}
+.alert b{display:block}
+ol.ms{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.ms li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:start;background:var(--card);border-radius:14px;padding:12px 14px;border:2px solid transparent}
+.ms li.done{opacity:.55}.ms li.done h3{text-decoration:line-through}
+.ms li.warn{border-color:var(--coral)}
+.ms input{width:26px;height:26px;margin:9px;accent-color:var(--coral);cursor:pointer}
+.ms h3{margin:0;font-size:17px;line-height:1.3}
+.ms h3 em{font-style:normal;color:var(--soft);font-weight:400;font-size:14px}
+.ms p{margin:4px 0 0;color:var(--soft);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-size:13px;font-weight:500;padding:2px 9px;border-radius:99px;background:var(--line);color:var(--ink)}
+.chip.P,.chip.T,.chip.R{background:var(--coral);color:#fff}
+.chip.O{background:var(--teal);color:#fff}
+.vid{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500;text-decoration:none;background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:8px 12px;min-height:44px;white-space:nowrap;color:var(--ink)}
+.vid svg{flex:none}
+.empty{padding:24px;text-align:center;color:var(--soft)}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:14px;color:var(--soft);font-weight:500}
+td.n{text-align:right;white-space:nowrap;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.box{background:var(--card);border-radius:16px;padding:18px}
+.box h3{margin:0 0 6px;font-size:18px}
+.box p,.box ul{margin:0;color:var(--soft);font-size:15px}
+.box ul{padding-left:18px}
+footer{background:#132126;color:#cfe3e2;font-size:14px}
+footer a{color:var(--sun)}
+footer ul{columns:2 260px;padding-left:18px}
+.note{font-size:13px;color:var(--soft);margin-top:14px}
+@media(max-width:600px){
+ .hero .wrap{grid-template-columns:1fr}
+ .ms li{grid-template-columns:40px minmax(0,1fr)}
+ .ms .vid{grid-column:2;justify-self:start}
+ table{font-size:13px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--soft);font-weight:400}.stack td:empty{display:none}}
+@media(prefers-reduced-motion:reduce){.meter .bar i{transition:none}#sun{animation:none!important}}
+@keyframes rise{from{transform:translateY(14px)}to{transform:translateY(0)}}
+#sun{animation:rise 2.4s ease-out both}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="hero">
+ <div class="wrap">
+  <div>
+   <span class="tag">Guia de fã · não oficial</span>
+   <h1 style="margin-top:14px">Guia Leonida: GTA 6 missão por missão</h1>
+   <p>Todas as missões dos 5 capítulos em ordem, o que fazer em cada uma, o que dá pra perder pra sempre e onde estão os colecionáveis. Marque o que já fez — o progresso fica salvo no seu navegador.</p>
+   <div class="stats">
+    <div><b>5</b><span>capítulos</span></div>
+    <div><b>91</b><span>missões principais</span></div>
+    <div><b>4</b><span>conteúdos perdíveis</span></div>
+   </div>
+  </div>
+  <svg class="scene" viewBox="0 0 640 340" role="img" aria-label="Pôr do sol sobre o mar das Keys com palmeiras e um barco">
+   <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff5a5f"/><stop offset=".75" stop-color="#ff9a5a"/><stop offset="1" stop-color="#ffd23f"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b8a8f"/><stop offset="1" stop-color="#0b3f45"/></linearGradient>
+    <g id="palm"><path d="M0 0 C6 -60 4 -120 14 -170" stroke="#132126" stroke-width="9" fill="none" stroke-linecap="round"/><g fill="#132126"><path d="M14 -170 q-50 -10 -80 25 q40 -18 80 -25z"/><path d="M14 -170 q45 -20 85 10 q-45 -10 -85 -10z"/><path d="M14 -170 q-20 -45 -60 -55 q35 25 60 55z"/><path d="M14 -170 q15 -50 55 -60 q-35 30 -55 60z"/><path d="M14 -170 q-35 10 -45 55 q20 -35 45 -55z"/><path d="M14 -170 q40 10 50 55 q-22 -35 -50 -55z"/></g></g>
+   </defs>
+   <rect width="640" height="340" fill="url(#sky)"/>
+   <g id="sun"><circle cx="330" cy="230" r="96" fill="#ffd23f"/><g fill="#ff9a5a"><rect x="230" y="196" width="200" height="6"/><rect x="230" y="212" width="200" height="8"/><rect x="230" y="230" width="200" height="10"/></g></g>
+   <path d="M0 236 L80 222 L150 230 L170 214 L190 230 L260 236 Z" fill="#c74a5c" opacity=".7"/>
+   <path d="M420 236 L470 218 L520 226 L560 210 L640 222 L640 236Z" fill="#c74a5c" opacity=".7"/>
+   <rect y="236" width="640" height="104" fill="url(#sea)"/>
+   <g stroke="#ffd23f" stroke-width="3" stroke-linecap="round" opacity=".7"><path d="M280 252h100M300 266h60M270 280h120M310 296h40"/></g>
+   <g transform="translate(430 270)"><path d="M0 0 h90 l-14 18 h-66z" fill="#fff"/><path d="M18 0 v-16 h40 l12 16z" fill="#fff"/><rect x="26" y="-12" width="18" height="7" fill="#0f6e74"/><path d="M-10 22 h120" stroke="#9fe0dd" stroke-width="3" stroke-linecap="round"/></g>
+   <use href="#palm" transform="translate(70 340)"/>
+   <use href="#palm" transform="translate(150 340) scale(-.8 .8)"/>
+   <use href="#palm" transform="translate(590 340) scale(.9)"/>
+  </svg>
+ </div>
+</header>
+
+<nav aria-label="Seções"><div class="scroll" id="tabs"></div></nav>
+
+<main class="band"><div class="wrap" id="view"></div></main>
+
+<footer class="band"><div class="wrap">
+ <h2 style="font-size:28px;color:#fff">Fontes e créditos</h2>
+ <p>Montado a partir de guias publicados na semana de lançamento (19/11/2026). Nomes de missões ficam em inglês, como aparecem no jogo; ordem e números podem mudar conforme a comunidade confirma. Os botões de vídeo abrem uma busca no YouTube pela missão.</p>
+ <ul>
+  <li><a href="https://www.keengamer.com/articles/guides/gta-6-walkthrough-all-chapters-and-story-missions-in-order/">KeenGamer — capítulos e missões em ordem</a></li>
+  <li><a href="https://www.powerpyx.com/gta-6-full-walkthrough-all-missions/">PowerPyx — walkthrough completo e Strangers &amp; Freaks</a></li>
+  <li><a href="https://game8.co/games/GTA-6/archives/638816">Game8 — capítulo 1</a></li>
+  <li><a href="https://gamingpromax.com/gta-6-chapter-1-guide/">GamingProMax — recompensas e códigos do cap. 1</a></li>
+  <li><a href="https://thegameswiki.com/gta6/wiki/collectibles">The Games Wiki — colecionáveis e recompensas</a></li>
+  <li><a href="https://gmtreks.com/gta6/page/01M7Q14Z47TMRMR101MF07KYYA">GMTreks — visão geral dos colecionáveis</a></li>
+  <li><a href="https://www.powerpyx.com/gta-6-collectible-guide/">PowerPyx — guia de colecionáveis</a></li>
+  <li><a href="https://www.videogameschronicle.com/guide/grand-theft-auto-6-complete-walkthrough-hub/">VGC — hub de walkthrough</a></li>
+  <li><a href="https://www.keengamer.com/articles/guides/gta-6-best-early-game-unique-weapon-locations/">KeenGamer — armas únicas</a></li>
+  <li><a href="https://metaforge.app/gta-6/best-weapons-gta-6">MetaForge — melhores armas</a></li>
+  <li><a href="https://gtabay.com/en/guides/gta-6-rare-cars-locations">GTABay — carros raros</a></li>
+  <li><a href="https://fandomwire.com/rarest-cars-in-gta-6-you-can-get-for-free-ranked/">FandomWire — carros raros grátis</a></li>
+  <li><a href="https://www.g2a.com/news/gta-6-news/gta-6-money-making-guide/">G2A News — dinheiro por capítulo</a></li>
+  <li><a href="https://mmoculture.com/tips-guides/gta-6-money-guide/">MMO Culture — dinheiro no cap. 1 e 2</a></li>
+  <li><a href="https://gamerant.com/unlimited-money-glitch-gta-6/">Game Rant — bug do dinheiro (salvar e carregar)</a></li>
+  <li><a href="https://www.vice.com/en/article/gta-6-money-glitch/">VICE — bug do dinheiro (trocar de personagem)</a></li>
+  <li><a href="https://www.redbull.com/int-en/gta-6-easter-eggs">Red Bull — easter eggs</a></li>
+  <li><a href="https://gtaside.com/tips/gta6/easter-eggs/">GTASide — segredos</a></li>
+ </ul>
+ <p class="note" style="color:#9fbcbb">Site de fã, sem ligação com a Rockstar Games ou a Take-Two. Grand Theft Auto é marca dos seus donos.</p>
+</div></footer>
+
+<script>
+{
+const ch=[
+{id:'cap1',t:'Capítulo 1',n:'Just Like Paradise',where:'Leonida Keys',
+ alert:'Ponto sem volta: Tourist Trap. Antes dela, faça save manual, termine as atividades opcionais e guarde dinheiro no banco — a casa do Jason e a grana no bolso são perdidas.',
+ m:[
+ ['Prologue','Como Lucia, siga o guarda até a sessão com a conselheira e jogue o flashback do roubo ao banco.','L'],
+ ['Gone Fishing','Pilote o barco atrás do avião do Donnie e desacelere nos marcadores pra Cal pegar os pacotes. Pegue o dinheiro escondido do Donnie.','J'],
+ ['Gear Up','Compre uma arma longa com o Andrew na Chuck\'s Tackle & Shot. Libera lojas de armas e o loadout.','J'],
+ ['Just a Scratch','Conserte e repinte a picape Ganado na oficina do Joey. Não gaste em tuning: ela é perdida no fim do capítulo.','J'],
+ ['Lab Fees','Cobre o aluguel atrasado na Moonstone Boutique. Código do laboratório: 0420. Depósito do Brian: 7700. Paga $600.','J'],
+ ['Unwanted Attention','Tire o Imponte Phoenix vermelho do pátio, fuja da polícia, passe no Pay \'n\' Spray e entregue. Libera Pay \'n\' Spray e o rádio da polícia.','J'],
+ ['Pipework','Ajude a Mandy com o encanamento e cobre o aluguel. Pegue o charuto Macizo na frente da casa dela.','J'],
+ ['Get Shirley\'s Rum','Missão da Shirley exclusiva do capítulo 1, aparece depois de Pipework.','OP'],
+ ['Steal the Scooter','Segunda tarefa da Shirley, também exclusiva do capítulo 1.','OP'],
+ ['Hey Arnold!','Encontre o Brian no Crastenburg Hotel e rastreie o Arnold. Tem uma escolha no meio.','J'],
+ ['Island Dreams','Primeiro mergulho com o Kenton, o caçador de tesouros. Libera os pontos de mergulho. Paga $400.','J'],
+ ['Feng Shui','Ajude o Cal a arrumar os móveis.','J'],
+ ['Recepção da Lucia','Mercado, flores, colar (uns $425), corte de cabelo e roupas da Lucia com o Andy. Também dá pra consertar a casa do Jason.','O'],
+ ['Coming Home','Busque a Lucia na saída da prisão.','J'],
+ ['Buck Me','Abra a conta no banco BuckMe. Atenção: o que vai pro Family Savings não pode ser sacado.','J'],
+ ['Clean Up After Donnie','Recupere o pacote do drop do Donnie. Paga $600.','J'],
+ ['Find the Lost Drugs','Depois de Buck Me: quatro pacotes espalhados por Mariana County.','O'],
+ ['Down to Earth','Voo de contrabando com a Lucia, soltando pacotes nos pontos marcados na água.',''],
+ ['Meditação na varanda','Depois de Down to Earth a Lucia medita na varanda. Some no fim do capítulo e pode contar pro troféu Positive Mental Attitude.','OP'],
+ ['Day Release','Conheça Mattia e Kat e acompanhe a noitada.',''],
+ ['Clear Skies','Trabalho com o Donnie envolvendo um grupo de motoqueiros.','J'],
+ ['Swamped','Reunião dos Kingfishers com Brian e Lorrie.',''],
+ ['Don Gone','Investigue o sumiço do Donnie no trailer. Abra o porta-malas do carro dele antes de destruí-lo: tem um H&L .38.','J'],
+ ['Recalibration','Encontre o Cal e prepare o serviço do Mattia. Faça um save manual separado antes.',''],
+ ['Tourist Trap','Pegue a bolsa no armário do Visitor Center e fuja de policiais corruptos de barco. Não deixe o Jason morrer.','R'],
+ ['Home Sweet Home','Como Lucia, lide com o que aconteceu em Tourist Trap.','L'],
+ ['Discharge Time','Fecha o capítulo e leva ao capítulo 2.','']
+ ]},
+{id:'cap2',t:'Capítulo 2',n:'Paradise Lost',where:'Port Gellhorn',
+ alert:'Ponto sem volta: Checking Out. Ela fecha o capítulo e tira o motel como casa. Junte pelo menos $15.000 e faça save manual antes.',
+ m:[
+ ['What\'s in the Bag?','Começo em Port Gellhorn com os primeiros objetivos da Lucia.','L'],
+ ['Take Care of Jason','Cuide do Jason e depois fale com a Linda, gerente do motel.','L'],
+ ['Just Moved In','Ajude a Lucia a se instalar e termine as compras.','L'],
+ ['Girls\' Trip','Saída da Lucia, onde ela conhece uma pessoa nova e procura analgésicos.','L'],
+ ['Moses','Conheça o Moses e faça o primeiro serviço com veículo.',''],
+ ['Ambulance Chaser','Como Lucia, tire a ambulância do lugar e se livre dela.','L'],
+ ['Check Out McKittrick Farm','Começo da linha do Kyle (conta pro troféu Strangers & Freaks).','O'],
+ ['Slam Dunk','Consiga com o Dunk os analgésicos que a Lucia precisa.','L'],
+ ['Collect Chemicals for Kyle','Segunda missão do Kyle.','O'],
+ ['Daily Driver','Roube o Crawler que o Moses pediu e entregue.',''],
+ ['Breakfast Run','Café da manhã com Jason e Lucia.',''],
+ ['Coffee Break','Acompanhe a conversa do casal e prepare a próxima etapa.',''],
+ ['Thrillbillies / Twist Wrist, Smash, Grab','Missões do Billy. Ficam fora das 91 principais.','O'],
+ ['Hit Avery Pawn / Hit Kingpin Bowling','Roubos opcionais pra fazer caixa.','O'],
+ ['Veteran Hunted','Conheça o Bret (só Jason). Abre os baralhos de caça do Bret.','OJ'],
+ ['Afternoon Delight','Roube o chefe da Vicki na boate.',''],
+ ['Checking Out','Defenda o motel e fuja rumo a Vice City.','R']
+ ]},
+{id:'cap3',t:'Capítulo 3',n:'Tits Ass Drug Money',where:'Vice City',
+ alert:'Fique de olho na ampulheta: Race Against Yago é por tempo limitado e some se você demorar. Faça assim que aparecer.',
+ m:[
+ ['Welcome to Vice City','Chegada com Jason e Lucia e encontro com o Dre\'Quan.',''],
+ ['Dealer\'s Choice','Como Jason, faça uma venda armada pelo Dre\'Quan.','J'],
+ ['Dubious Provenance','Visite a loja de antiguidades e termine o serviço.',''],
+ ['Mami Knows Best','Como Lucia, encontre a Mia — começa a história da família.','L'],
+ ['Join a Street Race','Primeira do Yago. Abre a linha de corridas.','O'],
+ ['Here, Kitty Kitty','Serviço do Tyrone: encontrar o Charles.','J'],
+ ['Boobie Time','Leve o Boobie aos destinos dele.','J'],
+ ['Buddy?','Final da linha do Kyle.','O'],
+ ['Meet the Heders','Saída de casais com Brian e Lorrie.',''],
+ ['Yasmani\'s Jewelry Jobs','Roube três joalherias e venda pro Yasmani.',''],
+ ['Bumper to Bumper','Seja mentor do Yago (Jason).','OJ'],
+ ['Car Service','Como Lucia, roube o carro que o Raul pediu.','L'],
+ ['Top Billing','Show dos Real Dimez com o Dre\'Quan.',''],
+ ['First Impressions','Encontro com o Raul e a equipe dele.',''],
+ ['Crosstown Traffic','Vigilância e objetivos de gangue, incluindo seguir alguém com a Lucia.','L'],
+ ['Credit Check','Visite a base do Raul e conheça o pessoal.',''],
+ ['Clonin\' Keys, Makin\' GS','Roube o Zorrusso de luxo pro Randy. Abre a lista de desejos do Randy.',''],
+ ['Ride or Die','Ajude o Dre\'Quan na nova tarefa.','J'],
+ ['Race Against Yago','Corrida contra o Yago. Tempo limitado — faça assim que surgir.','OTP'],
+ ['Sinfrontera National Bank','Reconheça o banco e comece a preparação do golpe.',''],
+ ['Security Expert','Conheça a Nicole e prepare a parte de segurança.',''],
+ ['Caught Slipping','Ajude a defender contra um assalto.',''],
+ ['Company Property','Serviço da carga de armas.',''],
+ ['Safe Word','Roube o cofre de treino e aprenda a técnica.',''],
+ ['The Missing Link','Como Lucia, siga a pista da rinha de galo.','L'],
+ ['Brother to Brother','Último trabalho do Yago.','OJ'],
+ ['Cooties','Ajude na gravação do clipe.',''],
+ ['Hidden Charges','Reúna a equipe e prepare os explosivos.',''],
+ ['Bricked Up','Serviço do Boobie com Jason e Lucia.',''],
+ ['South Leonida Real Estate','Continue o trabalho da Lucia com a Mia.','L'],
+ ['The Cartel Heist','O roubo ao banco com a equipe do Raul. Fecha o capítulo.','']
+ ]},
+{id:'cap4',t:'Capítulo 4',n:'Vice City, Baby',where:'Vice City',
+ alert:'Missão perdível: This Is a Free Call From… (buscar a Shayna, com a Lucia) é por tempo limitado. E termine todas as preparações antes de VCIA Takedown.',
+ m:[
+ ['Ocean Beach','Monte a nova base do casal.',''],
+ ['Another Life','Acontecimentos pessoais da Lucia.','L'],
+ ['Company Cars','Fale com o concierge e pegue os carros dos próximos serviços.',''],
+ ['Lawyer Up','Conheça o advogado Abe Gonzalez.',''],
+ ['It\'s A Date!','Encontro opcional.','O'],
+ ['Heavy Lifting','Leve o HD pro Raul.',''],
+ ['Party Hard','Faça segurança numa festa de celebridade.',''],
+ ['Photo/Shoot','Sessão de fotos de divulgação com o Dre\'Quan.',''],
+ ['Bad Driver! / Festa do Eddie Acosta','Atividades opcionais.','O'],
+ ['Making Gainz','Como Lucia, comece o treino ligado ao plano do Raul.','L'],
+ ['Too Much Baggage','Como Jason, reconheça o aeroporto trabalhando com bagagem.','J'],
+ ['Watch It','Serviço com o dono de uma boate.','J'],
+ ['Amateur Hour','Lucia e Cisco confrontam um diretor.','L'],
+ ['Cash Injections','Lucia continua com o Nate e os contatos do golpe.','L'],
+ ['Dirty Work','Serviço da Raina, mais preparação do aeroporto.',''],
+ ['Adventures in Babysitting','Segurança do Andrés numa boate.','J'],
+ ['Fresh Evidence','Ajude o Dre\'Quan a roubar material de chantagem.','J'],
+ ['Child\'s Play','Resgate o Rafa dos sequestradores.','J'],
+ ['This Is a Free Call From…','Buscar a Shayna com a Lucia. Some se demorar.','OTPL'],
+ ['Power Play','Inteligência e próxima preparação do VCIA Takedown.','L'],
+ ['Close Surveillance','Como Jason, vigie os alvos com um drone espião.','J'],
+ ['Delivery Method','Serviço disfarçado do Jason pro golpe.','J'],
+ ['Team Building','Como Lucia, serviço com a equipe do Kordell.','L'],
+ ['Fully Catered','Roube o caminhão de buffet pra operação do aeroporto.',''],
+ ['Headliners','Festa de lançamento e show dos Real Dimez.',''],
+ ['VCIA Takedown','O golpe no aeroporto com a equipe e o equipamento preparados.',''],
+ ['That\'s Where The Money Is…','Libera roubos maiores a cofres de banco. Vale pra quem quer 100%.','O'],
+ ['Sunset','Investigue o que sobrou depois do golpe.',''],
+ ['Starting From Zero','Eventos finais do capítulo.','']
+ ]},
+{id:'cap5',t:'Capítulo 5',n:'Top of the World, Ma',where:'Leonida',
+ alert:'Faça um save manual antes da reta final se quiser voltar a um ponto anterior — o jogo não tem replay de missão.',
+ m:[
+ ['Bird in the Hand','Roube um veículo pra próxima operação.',''],
+ ['Taking Liberties','O casal prepara o plano.',''],
+ ['VC Baby','Atenda ao pedido de ajuda e cumpra os objetivos.',''],
+ ['Doggie Bag','Siga os marcadores até o contrabando.',''],
+ ['Operation Savage Glory','Recupere a carga.',''],
+ ['Protective Custody','Sequência final de tarefas antes do desfecho.',''],
+ ['Missão final','A última missão da história (nome escondido pra evitar spoiler).','']
+ ]}
+];
+const col=[
+ ['Cartas colecionáveis','18 coleções · 480 cartas','15 coleções','Liberadas depois de Gone Fishing. 3 coleções dão o troféu Don\'t Touch My Deck; as 24 de Vice City Flamingos liberam o filtro Bubblegum.'],
+ ['Cocaine Flamingos','125','100','Atire: os de bico preto e branco soltam um pacote pra vender ao receptador (os de bico amarelo são decoração). 50 liberam o cheat do flamingo inflável.'],
+ ['Pontos do WAiNK','mais de 100','100 escaneados','Escaneie com o app WAiNK do celular: marcos, curiosidades, esculturas e tags No Flusher. 100 dão o troféu You WAiNKer!'],
+ ['Pontos de meditação','18','15','Os 18 dão o troféu Positive Mental Attitude. Um deles é a varanda do Jason, só no capítulo 1.'],
+ ['Descobertas submarinas','33','33','Naufrágios ligados aos mergulhos do Kenton.'],
+ ['Kenton Sets','7','5','Conjuntos de naufrágios da mesma linha do Kenton.'],
+ ['Revistas, livros e quadrinhos','27','—','Não são numerados no jogo; vá pegando capítulo a capítulo.'],
+ ['Book Swaps','7','—','Estantes de troca de livros.'],
+ ['Playlists únicas','2','2','Escaneie cartazes pra liberar novas playlists.'],
+ ['Relógios de luxo','34','—','10 liberam o cheat de avançar o tempo; 20, o de pausar a hora do dia.']
+];
+const sf=[
+ ['Capítulo 1','Kenton (mergulhos), Kirk (Skunk Ape à noite, efígies, Mr. Mangrove com a Lucia), Cal e Shirley. A linha do Kirk começa no 1 e só termina no 2.'],
+ ['Capítulo 2','Kyle e Alvan contam pro troféu. Também: Moses, Bret (baralhos de caça) e Billy.'],
+ ['Capítulo 3','Yago conta pro troféu. Também: Andy, Yasmani (joalherias, caixas eletrônicos, carro-forte), Randy (lista de carros), Tyrone, Dunk e Papa Audacity.'],
+ ['Capítulo 4','Pilot Pete conta pro troféu (só Jason, entregas com prazo). Também: Eddie Acosta e Shayna.'],
+ ['Qualquer capítulo','Dr. Merle (The Final Flush) e Freddie (Retest Freddie\'s Defenses), ambos contam pro troféu.']
+];
+const tips=[
+ ['Não tem replay de missão','Guarde saves manuais separados no começo e no fim de cada capítulo. Também não existe medalha de ouro em missão.'],
+ ['Ampulheta = corra','Marcadores com ampulheta são por tempo limitado. Faça antes de avançar a história.'],
+ ['Dinheiro no banco','Grana no bolso pode sumir em missões perigosas e nos pontos sem volta. Deposite no BuckMe — mas lembre que o Family Savings não deixa sacar.'],
+ ['Cada capítulo, uma casa','A casa do Jason fecha no fim do 1, o motel no fim do 2 e o apartamento de Vice City no fim do 3.'],
+ ['Perfil criminal','Matar civis e policiais à toa puxa o seu perfil pro lado violento.'],
+ ['Missão não apareceu?','A ordem varia um pouco. Faça outra coisa ou durma, e confira o mapa: alguns contatos só chamam depois.'],
+ ['Depois do final','O mundo continua aberto pra colecionáveis, roubos, desafios e a maioria dos Strangers & Freaks.']
+];
+// [categoria, nome, capítulo (0 = mundo aberto, sem capítulo confirmado), onde, como, perdível]
+const ach=[
+['arma','Moreland 850 (escopeta)',1,'Chuck\'s Tackle & Shot, Key Lento','Na missão Gear Up sai por $350, metade do preço normal de $700. Melhor primeira compra.'],
+['arma','Girardi ES9 (pistola)',1,'Ammu-Nation','À venda pro Jason já no capítulo 1.'],
+['arma','Duke 556 (fuzil)',1,'Conta BuckMe','Libera depois da missão Buck Me, por $1.450. Melhor arma comprável no geral.'],
+['arma','Swamp Bait Akulus (revólver)',1,'Cabana em ruínas nos pântanos de Pelican Valley','Grátis: entre na cabana e pegue do chão.'],
+['arma','Cruel Huntsman\'s SM-69 (sniper)',1,'Mesma cabana de Pelican Valley, varanda dos fundos','Grátis, junto com o revólver acima.'],
+['arma','Crabshack VF5 (submetralhadora)',1,'Posto abandonado de pesquisa de caranguejo, sudoeste de Pelican Valley','Resolva computador, cofre e teclado. Código da garagem: 0212. A arma está ao lado de um corpo.'],
+['arma','Donnie\'s H&L .38 (revólver)',1,'Carro do Donnie, missão Don Gone','Abra o porta-malas antes de o carro ser destruído, senão perde pra sempre.',1],
+['arma','Assassin Nipper .38 (pistola silenciada)',1,'Navio espião abandonado, ponta sul de Permit Keys','Abra a escotilha no meio do convés.'],
+['arma','Smuggler Gorse 425 (escopeta)',1,'Ilha mais ao norte de Permit Keys','Na areia, ao lado de um barco de contrabando abandonado.'],
+['arma','Kingfishers W-22 (rifle silencioso)',1,'Complexo de pesca dos Kingfishers, Wetman Bay','Limpe os guardas e abra a maleta na mesa do prédio à beira d\'água. Bom pra headshot furtivo.'],
+['arma','Conspiracist Type 9 + lança-foguetes H-AT',1,'Bunker secreto debaixo de um trailer em Balsero','Depois da missão Building a Life. Ache o alçapão no chão do trailer.'],
+['arma','Hunter\'s Laird 350 (sniper)',0,'Beira da estrada ao sul de Hamlet, perto de Grassrivers','Leve o caçador ferido ao hospital. Na Ammu-Nation ela custa $950.'],
+['arma','Marabunta Grande Hobo (escopeta)',0,'Armazém industrial ao sul de Hamlet','Abra a maleta de armas lá dentro.'],
+['arma','Drug Mule KZ-59 (fuzil)',0,'Lancha afundada ao norte das Riquezas Keys','Mergulhe até o naufrágio e procure embaixo do barco.'],
+['arma','Turnt Nipper .38 (pistola)',0,'Paramotor preso num pinheiro, Bobcat Bight (Capri)','Atire nas cordas pra ele cair e pegue a arma.'],
+['arma','Klose K17 (pistola)',2,'Lucia','Fica disponível pra Lucia quando ela vira jogável, no capítulo 2.'],
+['arma','Convict Kalinga .50 (pistola)',2,'Fim do túnel sob uma cabana isolada, ao norte da Leonida State Prison','Perto do motel do capítulo 2.'],
+['arma','Arma grátis na Kingpin Bowling',2,'Boliche de Port Gellhorn, mesa de sinuca no canto nordeste','Durante Hit Kingpin Bowling, depois de Coffee Break.'],
+['arma','Killtelligence SM-69 (sniper de caça)',2,'Bret Vogel, Lummox County','Presente da missão Veteran Hunted (só Jason).'],
+['arma','Shrewsbury SMS-01',2,'Linha de caça do Bret','Libera depois da nona caçada.'],
+['carro','Turbo Ruiner',1,'A leste da casa do Jason em Key Lento','Nitro grátis logo no começo.'],
+['carro','Maibatsu \'97 Penumbra FF',0,'Garagem de casa em Vespucci Island','Homenagem a Velozes e Furiosos. Destrancado e sem rastreador: dá pra roubar cedo e registrar.'],
+['carro','Drift Elegy',0,'Gellhorn Raceway','Fica no autódromo de Port Gellhorn.'],
+['carro','Supercarro dourado',0,'Crimson Palms Condominiums, torre à beira-mar','Suba a rampa curva do estacionamento; ele está debaixo da cobertura lá no alto.'],
+['carro','SUV dourado (placa CASHTLKS)',0,'Garagem da casa grande no centro de Casanova Island','Entre na garagem da mansão.'],
+['carro','Devil\'s Rope Gauntlet',0,'Hog Stars Garage, Acacia Street, Ambrosia','Dentro de um complexo de motoqueiros.'],
+['carro','Übermacht Cypher Pop Art',0,'Estacionamento coberto perto da Panos Plaza, Vice City','Parado ao lado de uma van de encanador.'],
+['carro','Clonador de chaves (Key Cloner)',3,'Missão Clonin\' Keys, Makin\' GS','Obrigatório pra levar supercarros com rastreador avançado e começar a lista de desejos do Randy.'],
+['carro','Pegassi Infernus \'96',3,'7º andar do estacionamento da delegacia de Crosstown (NW 9th St)','Entre escondido atrás de um policial. Dá pra sair pela rampa de salto no último andar.'],
+['carro','Pegassi Vitello',3,'Mansão na Flamingo Pkwy, Waning Sands','Pule a cerca até a garagem ao lado da casa. Muito rápido e fácil de bater.'],
+['carro','Pegassi Tempesta',3,'NE 3rd St, Vice City','Por volta das 13h está num guincho enquanto o dono discute com o cobrador. Espante o dono e leve.'],
+['carro','Pegassi Toros',3,'Pegassi Residences, Tequesta Retreat (Bayside Dr)','Estacionado na frente por volta das 18h30, com guardas perto.'],
+['carro','Bravado Gauntlet Hellfire',3,'Ferro-velho a leste da Boone Speedway, Hamlet','No fundo do pátio. Vá agachado pelo lado direito.'],
+['carro','Grotti Itali RSX',3,'Garagem em Vespucci Island','Pule a cerca de madeira e force a porta da direita. Rastreador avançado: só com a chave clonada.'],
+['carro','Pfister Growler',3,'Ocean Beach','Estacionamento da Fig St por volta das 17h (as fontes divergem no local).'],
+['carro','Mamba GT',3,'Mansão em Leaf Links, Vice Beach','Aparece com o trabalho ¡Dale Mamba!. A chave fica numa mesa atrás do sofá, depois da piscina. Muitos guardas.'],
+['carro','Pfister Comet S2 (grátis)',4,'Status Auto Imports, missão Company Cars','Você escolhe um carro de presente; o Comet S2 tem os melhores atributos.'],
+['carro','\'95 Grotti Cheetah',5,'Esconderijo','Só na Ultimate Edition.'],
+['grana','Esconderijos de gangue (Illegal Operations)',1,'Fishing Shacks e Manatee Hotel, pântanos a noroeste de Key Lento','O dinheiro mais rápido no começo. Venda as drogas pro Brian ou Donnie (cap. 1) ou pro Dunk (cap. 2). Mais tarde o Tyrone paga mais.'],
+['grana','Pacotes do Donnie',1,'Quatro locais pelo mapa','Cerca de $900 cada. Venda antes de o Donnie ir embora.'],
+['grana','Mergulhos do Kenton',1,'Pontos roxos de mergulho nas Keys','Depois de Island Dreams. Uns $1.400 no primeiro naufrágio, quase sem risco.'],
+['grana','Eventos aleatórios',1,'Mar das Keys e ponte rumo a Hamlet','Barcos explodindo deixam uns $1.500 a $2.000 em pacotes; tem também a queda de um avião de contrabando.'],
+['grana','Cool Dog, o cachorro no jet ski',0,'Mar aberto, por exemplo Gambit Bay','Vá longe no mar, pule na água e espere ouvir latido. Ele te leva a uma ilha com uma carteira de $1.218 e óculos.'],
+['grana','Vender carros pro Moses',2,'Port Gellhorn','A partir de $1.000 por carro, com espera de uns 2 minutos. Escaneie com o WAiNK e só roube carro sem rastreador.'],
+['grana','Caça com o Bret',2,'Lummox County','De centenas a milhares (um javali rende $2.500). Pouco risco de polícia.'],
+['grana','Roubar outros criminosos',2,'Siga tiros, sirenes e carros fugindo','Entre $1.000 e $15.000. Pegue as bolsas e leve a um receptador.'],
+['grana','Joalherias',3,'Linha do Yasmani','$10.000 a $25.000. Entre pelos fundos, desligue a segurança e venda pro Yasmani.'],
+['grana','Lojas pela porta dos fundos',3,'Precisa do Snap Gun','$6.000 a $15.000 sem tiroteio na frente de todo mundo.'],
+['grana','Lista de desejos do Randy',3,'Depois de Clonin\' Keys, Makin\' GS','Muitas vezes mais de $30.000 por supercarro. O Zorrusso paga uns $21.000 mais até $10.000 se chegar inteiro.'],
+['grana','Carros com rastreador padrão',3,'Pay \'n\' Spray','A partir de uns $4.000 nos carros mais valiosos.'],
+['grana','Entregas do Pilot Pete',4,'Só Jason','$12.000 na primeira e até $20.000 nas seguintes. Entregue tudo antes do prazo.'],
+['grana','Demolition Derby',0,'Ambrosia Raceway','$3.800 a $6.300 por vitória. Alugue um carro em vez de usar o seu.'],
+['grana','Cofres de banco',4,'Bancos grandes, depois de That\'s Where The Money Is…','De $100.000 a $205.000 por vez. Gera 4 estrelas: tenha uma moto rápida pra fuga.'],
+['segredo','Ninho de ovos de Páscoa',0,'Topo da torre de rádio, South Vice-Dale County','Uns 7 minutos de escalada. Jogue um ovo lá de cima pra ver uma cena secreta.'],
+['segredo','OVNI e alienígena',0,'Área de pesquisa alienígena','Chegar perto do OVNI dá o troféu oculto The Truth Is Out There. O meteorito da área pode ser vendido.'],
+['segredo','Meteorito rosa',0,'Mount Kalaga','Brilhando abaixo de um marcador de corrida. Dá pra vender.'],
+['segredo','Skunk Ape (Pé-Grande)',1,'Florestas e pântanos, linha do Kirk','Siga a criatura até achar uma efígie humana numa árvore e veja a cena.'],
+['segredo','Barco do Michael',1,'Perto da casa do Jason','Referência ao GTA 5. No celular dá pra escolher o toque Wind Chimes, do Michael.'],
+['segredo','Papagaios falantes',1,'Loja de bebidas nas Keys','Um deles entrega onde tem dinheiro escondido perto de um gerador.'],
+['segredo','Kit do Dexter',0,'Telhado de um prédio em Washington Island','Faca, corda e seringas da série. O barco dele fica na doca ao lado.'],
+['segredo','Ritual em Capri',0,'Galpão sem marcação perto de Tortoise Lake','Pentagrama desenhado no chão. O segredo mais sombrio achado até agora.']
+];
+const bugs=[
+ {t:'Celeiro vermelho: salvar e carregar',cap:1,pay:'$8.000 a $11.000 por rodada',where:'Celeiro vermelho a leste/nordeste de Hamlet, no sul de Vice-Dale County. Saindo de Key Lento, siga pro norte.',
+  need:'Seu carro pessoal (as bolsas vão no porta-malas).',
+  steps:['Entre no celeiro vermelho e vá até o escritório dos fundos.','Pegue a cocaína da mesa e do cofre na sua bolsa de saque e guarde a bolsa no porta-malas.','Volte e pegue a segunda bolsa, cheia de dinheiro, na van aberta no meio do celeiro.','Complete essa bolsa com a cocaína da van da frente e da van lá fora, e guarde no carro.','Faça um save manual e carregue esse save. Você aparece em casa, as bolsas continuam no carro e o celeiro reabastece.','Repita até ter 4 bolsas.','Venda no depósito do Brian no sudoeste de Key Lento (código 7700) ou em qualquer receptador.'],
+  warn:'Pode ser que a carga demore uns dias no jogo pra voltar; se não voltar, salve e carregue de novo. Gaste ou deposite o dinheiro antes de Tourist Trap, porque a grana no bolso é perdida ali.',
+  q:'GTA 6 infinite money glitch red barn Hamlet save reload'},
+ {t:'Galpão: trocar de personagem',cap:2,pay:'Uns $40.000 na primeira carga cheia',where:'O mesmo galpão a leste de Hamlet. Tem uma van coberta de ursinhos de pelúcia na frente e gangsters mortos lá dentro.',
+  need:'Jason e Lucia jogáveis (capítulo 2 em diante) e uma van de 10 espaços registrada.',
+  steps:['Pegue a van de 10 espaços que fica na frente do galpão.','Registre a van no Pay \'n\' Spray mais perto ou com o Moses, e encoste de ré na entrada.','Saqueie a van dos ursinhos (cocaína na traseira) e a segunda van lá dentro.','Pegue a cocaína da mesa do escritório e arrombe o cofre (não precisa de código).','Guarde tudo na van.','Troque da Lucia pro Jason e volte logo pra Lucia. A carga reaparece. O Jason precisa estar longe do galpão; se não funcionar, rode uns 800 m e volte.','Repita até lotar os 10 espaços e venda pro Tyrone ou pro Dunk, conforme o capítulo.'],
+  warn:'Nenhum guia testou depois de patch. Se a Rockstar corrigir, a carga para de voltar.',
+  q:'GTA 6 unlimited money glitch character switch warehouse'}
+];
+const catTxt={arma:'Armas',carro:'Carros',grana:'Dinheiro',segredo:'Segredos'};
+let cat='',upTo=0;
+const tagTxt={O:'Opcional',P:'Perdível',T:'Tempo limitado',R:'Ponto sem volta',J:'Jason',L:'Lucia'};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let done={};try{done=JSON.parse(localStorage.getItem('gta6guia')||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem('gta6guia',JSON.stringify(done))}catch(e){}};
+let q='',only='';
+const yt='<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="#ff5a5f"/><path d="M10 9l5 3-5 3z" fill="#fff"/></svg>';
+const views=[...ch.map(c=>[c.id,c.t]),['achados','Armas, carros e grana'],['bugs','Bugs de dinheiro'],['colecionaveis','Colecionáveis'],['extras','Strangers & dicas']];
+const tabs=document.getElementById('tabs'),view=document.getElementById('view');
+tabs.innerHTML=views.map(v=>`<a href="#${v[0]}">${v[1]}</a>`).join('');
+function chapter(c){
+ const tot=c.m.length,ok=c.m.filter((_,i)=>done[c.id+i]).length;
+ const list=c.m.map((m,i)=>[m,i]).filter(([m])=>(!q||(m[0]+' '+m[1]).toLowerCase().includes(q))&&(!only||(only==='P'?/[PTR]/.test(m[2]):!/O/.test(m[2]))));
+ return `<div class="head"><div><h2>${c.t}: ${c.n}</h2><p>${c.where} · ${tot} entradas no checklist (principais e opcionais importantes).</p></div>
+ <div class="meter"><div class="bar"><i style="width:${Math.round(ok/tot*100)}%"></i></div><small>${ok} de ${tot} feitas</small></div></div>
+ <div class="alert"><b>Antes de avançar</b>${c.alert}</div>
+ <div class="tools"><input type="search" id="q" placeholder="Buscar missão…" aria-label="Buscar missão" value="${esc(q)}">
+ <button data-f="" aria-pressed="${only===''}">Todas</button><button data-f="M" aria-pressed="${only==='M'}">Só principais</button><button data-f="P" aria-pressed="${only==='P'}">Perdíveis e sem volta</button></div>
+ <ol class="ms">${list.map(([m,i])=>{const k=c.id+i,w=/[PTR]/.test(m[2]);
+ return `<li class="${done[k]?'done':''} ${w?'warn':''}"><input type="checkbox" id="k${k}" data-k="${k}" ${done[k]?'checked':''} aria-label="Marcar ${esc(m[0])} como feita">
+ <div><h3>${esc(m[0])}</h3><p>${esc(m[1])}</p>${m[2]?`<div class="chips">${[...m[2]].map(t=>`<span class="chip ${t}">${tagTxt[t]}</span>`).join('')}</div>`:''}</div>
+ <a class="vid" href="https://www.youtube.com/results?search_query=${encodeURIComponent('GTA 6 '+m[0]+' walkthrough')}" target="_blank" rel="noopener">${yt}Vídeos</a></li>`}).join('')||'<li class="empty" style="display:block">Nada encontrado com esse filtro.</li>'}</ol>`;
+}
+function collect(){
+ return `<div class="head"><div><h2>Colecionáveis</h2><p>Tudo fica na aba Progresso do mapa, no cartão Coleções. Comece cedo: algumas cartas têm cópias em mais de um lugar e caçar depois é chato.</p></div></div>
+ <table class="stack"><thead><tr><th>Item</th><th>Total</th><th>Pra 100%</th><th>Como e recompensa</th></tr></thead><tbody>
+ ${col.map(r=>`<tr><td><b>${r[0]}</b></td><td class="n">${r[1]}</td><td class="n">${r[2]}</td><td>${r[3]}</td></tr>`).join('')}</tbody></table>
+ <p class="note">Contagens dos primeiros dias pós-lançamento; algumas fontes ainda divergem. Também contam pro 100%: corridas únicas (30), medalhas de ouro em desafios de corrida (10) e estilos descobertos.</p>
+ <p><a class="vid" style="display:inline-flex;margin-top:8px" href="https://www.youtube.com/results?search_query=${encodeURIComponent('GTA 6 all collectibles locations')}" target="_blank" rel="noopener">${yt}Vídeos de localização</a></p>`;
+}
+function finds(){
+ const list=ach.map((a,i)=>[a,i]).filter(([a])=>(!cat||a[0]===cat)&&(!upTo||a[2]<=upTo)&&(!q||(a[1]+' '+a[3]+' '+a[4]).toLowerCase().includes(q)));
+ const cnt=k=>ach.filter(a=>a[0]===k).length;
+ return `<div class="head"><div><h2>Armas, carros e grana</h2><p>O que a comunidade já achou na primeira semana: armas grátis, carros raros, jeitos de fazer dinheiro e segredos. Cada item mostra a partir de qual capítulo dá pra pegar.</p></div></div>
+ <div class="tools"><input type="search" id="q" placeholder="Buscar arma, carro, lugar…" aria-label="Buscar" value="${esc(q)}">
+ <label class="sel">Estou no <select id="cap"><option value="0">qualquer capítulo</option>${[1,2,3,4,5].map(n=>`<option value="${n}" ${upTo===n?'selected':''}>capítulo ${n}</option>`).join('')}</select></label></div>
+ <div class="tools"><button data-c="" aria-pressed="${cat===''}">Tudo (${ach.length})</button>${Object.keys(catTxt).map(k=>`<button data-c="${k}" aria-pressed="${cat===k}">${catTxt[k]} (${cnt(k)})</button>`).join('')}</div>
+ ${upTo?`<div class="alert"><b>Mostrando o que já dá pra pegar até o capítulo ${upTo}</b>Itens de mundo aberto sem capítulo confirmado ficam junto.</div>`:''}
+ <ol class="ms">${list.map(([a,i])=>{const k='a'+i;
+ return `<li class="${done[k]?'done':''} ${a[5]?'warn':''}"><input type="checkbox" data-k="${k}" ${done[k]?'checked':''} aria-label="Marcar ${esc(a[1])} como pego">
+ <div><h3>${esc(a[1])}</h3><p><b style="color:var(--ink);font-weight:500">${esc(a[3])}.</b> ${esc(a[4])}</p>
+ <div class="chips"><span class="chip ${a[2]?'O':''}">${a[2]?'Capítulo '+a[2]:'Mundo aberto'}</span><span class="chip">${catTxt[a[0]]}</span>${a[5]?'<span class="chip P">Perdível</span>':''}</div></div>
+ <a class="vid" href="https://www.youtube.com/results?search_query=${encodeURIComponent('GTA 6 '+a[1].replace(/\(.*?\)/g,'')+' location')}" target="_blank" rel="noopener">${yt}Vídeos</a></li>`}).join('')||'<li class="empty" style="display:block">Nada encontrado com esse filtro.</li>'}</ol>
+ <p class="note">"Mundo aberto" quer dizer que os guias ainda não confirmaram o capítulo: pode ser que o lugar só abra mais tarde na história. Valores e horários são dos primeiros dias e podem variar no seu jogo.</p>`;
+}
+function glitches(){
+ return `<div class="head"><div><h2>Bugs de dinheiro infinito</h2><p>Dois métodos achados pela comunidade logo depois do lançamento. Os dois usam o mesmo galpão perto de Hamlet e repetem o saque de cocaína e dinheiro.</p></div></div>
+ <div class="alert"><b>Use por sua conta</b>Não é o jeito que a Rockstar planejou o jogo e pode parar de funcionar num patch. Guarde um save normal separado antes de testar.</div>
+ <div class="grid">${bugs.map(b=>`<article class="box bug"><div class="chips" style="margin:0 0 8px"><span class="chip O">A partir do capítulo ${b.cap}</span><span class="chip">${esc(b.pay)}</span></div>
+ <h3 style="font-size:22px">${esc(b.t)}</h3>
+ <p><b style="color:var(--ink);font-weight:500">Onde:</b> ${esc(b.where)}</p>
+ <p style="margin-top:6px"><b style="color:var(--ink);font-weight:500">Precisa de:</b> ${esc(b.need)}</p>
+ <ol>${b.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>
+ <p class="bugwarn">${esc(b.warn)}</p>
+ <a class="vid" style="display:inline-flex;margin-top:12px" href="https://www.youtube.com/results?search_query=${encodeURIComponent(b.q)}" target="_blank" rel="noopener">${yt}Ver vídeos do bug</a></article>`).join('')}</div>
+ <p class="note">Valores relatados pelos guias que testaram (Game Rant, Insider Gaming, VICE, Beebom). O seu resultado pode variar.</p>`;
+}
+function extras(){
+ return `<div class="head"><div><h2>Strangers &amp; Freaks</h2><p>Personagens com missões paralelas. Quase todas continuam disponíveis depois da história, e algumas levam semanas de tempo no jogo pra avançar.</p></div></div>
+ <div class="grid">${sf.map(s=>`<div class="box"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('')}</div>
+ <div class="head" style="margin-top:40px"><div><h2>Dicas gerais</h2></div></div>
+ <div class="grid">${tips.map(s=>`<div class="box"><h3>${s[0]}</h3><p>${s[1]}</p></div>`).join('')}</div>`;
+}
+function render(){
+ const id=(location.hash||'#cap1').slice(1),c=ch.find(x=>x.id===id);
+ const cur=c?id:(views.some(v=>v[0]===id)?id:'cap1');
+ tabs.querySelectorAll('a').forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+cur));
+ view.innerHTML=c?chapter(c):cur==='achados'?finds():cur==='bugs'?glitches():cur==='colecionaveis'?collect():cur==='extras'?extras():chapter(ch[0]);
+}
+view.addEventListener('change',e=>{if(e.target.id==='cap'){upTo=+e.target.value;render();return}const k=e.target.dataset.k;if(!k)return;if(e.target.checked)done[k]=1;else delete done[k];save();render()});
+view.addEventListener('click',e=>{const c=e.target.closest('button[data-c]');if(c){cat=c.dataset.c;render();return}const b=e.target.closest('button[data-f]');if(!b)return;only=b.dataset.f;render()});
+view.addEventListener('input',e=>{if(e.target.id!=='q')return;q=e.target.value.toLowerCase().trim();render();const i=document.getElementById('q');i.focus();i.setSelectionRange(i.value.length,i.value.length)});
+addEventListener('hashchange',()=>{q='';only='';render();view.scrollIntoView({block:'start'})});
+render();
+}
+</script>
+</body>
+</html>
