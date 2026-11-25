@@ -98,7 +98,7 @@ footer ul{columns:2 260px;padding-left:18px}
 .post-links .vid{white-space:normal}
 .post-media{position:relative;background:#132126}
 .post-slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-color:var(--sun) transparent}
-.post-slides img{display:block;flex:0 0 100%;width:100%;max-height:75vh;object-fit:contain;scroll-snap-align:start}
+.post-slides img{display:block;flex:0 0 100%;width:100%;max-height:75vh;object-fit:contain;scroll-snap-align:start;min-height:240px}
 .post-controls{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;color:white}
 .post-controls button{min-width:44px}
 @media(max-width:600px){
@@ -649,7 +649,7 @@ function publicacoesView(){
  const links=(href,label)=>{const url=urlSegura(href||'');return url?'<a class="vid" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+'</a>':''};
  const cards=publicacoes.map(p=>{
   const imgs=(p.imagens||[]).map(urlSegura).filter(Boolean);
-  const imagens=imgs.length?'<div class="post-media"><div class="post-slides" role="region" tabindex="0" aria-label="Imagens de '+esc(p.titulo)+'">'+imgs.map((url,i)=>'<img src="'+esc(url)+'" loading="lazy" alt="'+esc(p.titulo)+' — imagem '+(i+1)+' de '+imgs.length+'">').join('')+'</div>'+(imgs.length>1?'<div class="post-controls"><button type="button" data-slide="prev" aria-label="Imagem anterior">Anterior</button><span>'+imgs.length+' imagens</span><button type="button" data-slide="next" aria-label="Próxima imagem">Próxima</button></div>':'')+'</div>':'';
+  const imagens=imgs.length?'<div class="post-media"><div class="post-slides" role="region" tabindex="0" aria-label="Imagens de '+esc(p.titulo)+'">'+imgs.map((url,i)=>'<img src="'+esc(url)+'" loading="'+(i?'lazy':'eager')+'" decoding="async" alt="'+esc(p.titulo)+' — imagem '+(i+1)+' de '+imgs.length+'">').join('')+'</div>'+(imgs.length>1?'<div class="post-controls"><button type="button" data-slide="prev" aria-label="Imagem anterior">Anterior</button><span>'+imgs.length+' imagens</span><button type="button" data-slide="next" aria-label="Próxima imagem">Próxima</button></div>':'')+'</div>':'';
   return '<article class="post">'+imagens+'<div class="post-body"><div class="post-meta"><span class="post-kind">'+esc(p.tipo)+'</span><time>'+esc(p.data)+'</time></div><h3>'+esc(p.titulo)+'</h3><p>'+esc(p.texto)+'</p><div class="post-links">'+links(p.fonteUrl,'Fonte: '+p.fonte)+links(p.video,'Assistir ao vídeo')+'</div></div></article>';
  }).join('');
  return '<div class="head"><div><h2>Novidades</h2><p>Notícias, vídeos, dicas e descobertas de GTA 6, com os créditos e as fontes de cada publicação.</p></div></div><div class="feed">'+(cards||'<div class="box empty">Ainda não há publicações.</div>')+'</div>';
